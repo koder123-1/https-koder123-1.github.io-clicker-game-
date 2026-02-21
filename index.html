@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ КЛИКЕР ВЕЧНОСТИ ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="title-section">
+            <h1 class="glitch-title">✦КЛИКЕР✦</h1>
+            <p>⚡ с сохранением прогресса ⚡</p>
+            <div class="save-badge" id="saveIndicator">💾 автосохранение</div>
+        </div>
+
+        <!-- Главный счёт -->
+        <div class="treasure-panel">
+            <div class="score-number" id="scoreDisplay">0</div>
+            <div class="score-label">энерго-кристаллов</div>
+        </div>
+
+        <!-- Кнопка клика -->
+        <div class="power-button">
+            <button class="mega-clicker" id="clickButton">
+                💥КЛИК💥
+                <span id="clickValueBadge">+1</span>
+            </button>
+        </div>
+
+        <!-- Статистика игрока -->
+        <div class="shard-stats">
+            <div class="stat-block">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value" id="perClickDisplay">1</div>
+                <div class="stat-name">за клик</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="levelDisplay">1</div>
+                <div class="stat-name">уровень</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-icon">🔨</div>
+                <div class="stat-value" id="totalClicksDisplay">0</div>
+                <div class="stat-name">кликов</div>
+            </div>
+        </div>
+
+        <!-- Улучшения -->
+        <div class="upgrade-grid">
+            <button class="upgrade-card" id="upgradePowerBtn">
+                <div class="upgrade-emoji">⚡➕</div>
+                <div>+1 сила</div>
+                <div class="upgrade-price" id="powerCostDisplay">10</div>
+                <div class="upgrade-desc">⬆️ цена растёт</div>
+                <div class="current-cost" id="powerCostNote">⚡ за 10</div>
+            </button>
+
+            <button class="upgrade-card" id="upgradeMultiBtn">
+                <div class="upgrade-emoji">✨×2✨</div>
+                <div>удвоение</div>
+                <div class="upgrade-price" id="multiCostDisplay">50</div>
+                <div class="upgrade-desc">⚡ мощь ×2</div>
+                <div class="current-cost" id="multiCostNote">💰 цена 50</div>
+            </button>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div class="button-row">
+            <button class="action-btn save-btn" id="saveBtn">
+                💾 СОХРАНИТЬ
+            </button>
+            <button class="action-btn reset-btn" id="resetBtn">
+                ⟳ СБРОС
+            </button>
+        </div>
+        <div class="footnote">✦ прогресс сохраняется автоматически ✦</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
