@@ -1,0 +1,437 @@
+/* style.css - стили для игры-кликера */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ОСНОВНОЙ ФОН */
+body {
+    min-height: 100vh;
+    background: #0a0f17;
+    background-image: radial-gradient(circle at 20% 30%, #1b2a3a, #0a0f17);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Анимированные частицы */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 15px 60px, #ffee99, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 75px 340px, #aaddff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 280px 120px, #ffb347, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 450px 85px, #88dd88, rgba(0,0,0,0)),
+        radial-gradient(4px 4px at 530px 290px, #ffaaaa, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 700px 500px, #c397ff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 850px 200px, #ffcc66, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 950px 620px, #99eeff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    opacity: 0.25;
+    animation: twinkle 8s infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.5; }
+}
+
+/* КОНТЕЙНЕР ИГРЫ */
+.game-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 480px;
+    max-width: 95%;
+    background: rgba(12, 20, 30, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 215, 100, 0.3);
+    border-radius: 64px;
+    padding: 28px 24px 36px;
+    box-shadow: 0 40px 70px -10px black, 0 0 0 1px rgba(255, 220, 120, 0.3) inset, 0 0 40px #ffd96630;
+    transition: box-shadow 0.3s;
+}
+
+.game-wrapper:hover {
+    box-shadow: 0 50px 80px -8px black, 0 0 0 2px #ffdb7c inset, 0 0 60px #fdb03b;
+}
+
+/* ЗАГОЛОВОК */
+.title-section {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.glitch-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #fff9e6;
+    text-shadow: 0 0 10px #ffb347, 0 0 20px #ffb347, 4px 4px 0 #7f4f1a, -2px -2px 0 #4a2e0e;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    2%, 8% { transform: skew(2deg, -1deg); text-shadow: 3px 0px 0 #ff66a3, -3px 0px 0 #66ccff; }
+    4% { transform: skew(-2deg, 1deg); text-shadow: -4px 1px 0 #ff66a3, 4px -1px 0 #66ccff; }
+    6% { transform: skew(0); text-shadow: 0 0 20px #ffb347, 4px 4px 0 #7f4f1a; }
+}
+
+.title-section p {
+    color: #b6d0e8;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, transparent, #f3c96b30, transparent);
+    padding: 8px;
+}
+
+/* ИНДИКАТОР СОХРАНЕНИЯ */
+.save-badge {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: #1e2a36;
+    color: #aaddaa;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 30px;
+    border: 1px solid #64dd64;
+    box-shadow: 0 0 10px #64dd6440;
+    backdrop-filter: blur(4px);
+    z-index: 20;
+}
+
+/* ПАНЕЛЬ СЧЁТА */
+.treasure-panel {
+    background: #0c121b;
+    border-radius: 100px;
+    padding: 20px 15px;
+    margin-bottom: 25px;
+    border: 1px solid #ffd966;
+    box-shadow: 0 15px 20px -10px black, inset 0 2px 10px #00000099, inset 0 0 20px #ffb34740;
+    transform: perspective(500px) rotateX(2deg);
+}
+
+.score-number {
+    font-size: 5rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1;
+    color: #ffe484;
+    text-shadow: 0 0 30px #f90, 0 10px 0 #8b5f1c, 0 15px 15px black;
+    word-break: break-word;
+}
+
+.score-label {
+    text-align: center;
+    color: #aaccff;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+/* ГЛАВНАЯ КНОПКА КЛИКА */
+.power-button {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 25px;
+    filter: drop-shadow(0 20px 20px #00000099);
+}
+
+.mega-clicker {
+    width: 240px;
+    height: 240px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 25%, #ffd966, #b85f1a);
+    border: 10px solid #ffec9e;
+    box-shadow: 0 20px 30px black, 0 0 0 8px #392f1e inset, 0 0 20px #ffb347;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-shadow: 0 5px 0 #703f0a, 0 8px 15px black;
+    cursor: pointer;
+    transition: 0.08s cubic-bezier(0.2, 1.2, 0.8, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+    letter-spacing: 4px;
+    animation: levitate 3s infinite alternate;
+}
+
+.mega-clicker span {
+    font-size: 1.2rem;
+    background: #ffffff30;
+    padding: 4px 12px;
+    border-radius: 60px;
+    backdrop-filter: blur(4px);
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+@keyframes levitate {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-12px) scale(1.02); }
+}
+
+.mega-clicker:active {
+    transform: scale(0.88) translateY(8px);
+    box-shadow: 0 5px 15px black, 0 0 0 6px #f3d27e inset, 0 0 30px #fdbb44;
+}
+
+/* СТАТИСТИКА */
+.shard-stats {
+    background: #0e1621e0;
+    border-radius: 60px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #f5c15d;
+    margin-bottom: 25px;
+    backdrop-filter: blur(4px);
+}
+
+.stat-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+}
+
+.stat-icon {
+    font-size: 1.7rem;
+    filter: drop-shadow(0 0 6px gold);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffde94;
+    text-shadow: 0 0 15px #ff9800;
+    line-height: 1;
+}
+
+.stat-name {
+    color: #a3c6ff;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* КАРТОЧКИ УЛУЧШЕНИЙ */
+.upgrade-grid {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.upgrade-card {
+    flex: 1;
+    background: linear-gradient(145deg, #1b2635, #10161f);
+    border: 2px solid #ffd966aa;
+    border-radius: 40px;
+    padding: 18px 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f5e7c8;
+    font-weight: 600;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 12px 0 #0b1017, 0 7px 20px black;
+    transition: 0.06s linear;
+    position: relative;
+    overflow: hidden;
+}
+
+.upgrade-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, #ffffff30, transparent 70%);
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.upgrade-card:hover::before {
+    opacity: 1;
+}
+
+.upgrade-card:active {
+    transform: translateY(8px);
+    box-shadow: 0 4px 0 #0b1017, 0 10px 20px black;
+}
+
+.upgrade-card.disabled,
+.upgrade-card:disabled {
+    opacity: 0.4;
+    transform: translateY(6px);
+    box-shadow: 0 6px 0 #0b1017;
+    filter: grayscale(80%);
+    pointer-events: none;
+}
+
+.upgrade-emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 4px 2px black);
+}
+
+.upgrade-price {
+    background: #2a384b;
+    border-radius: 60px;
+    padding: 5px 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffdb8e;
+    box-shadow: inset 0 2px 5px black;
+    margin: 6px 0 2px;
+}
+
+.upgrade-desc {
+    font-size: 0.8rem;
+    color: #b4ceff;
+}
+
+.current-cost {
+    font-size: 0.8rem;
+    background: #ffd96630;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-top: 5px;
+    border: 1px solid #ffd966;
+}
+
+/* КНОПКИ УПРАВЛЕНИЯ */
+.button-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    background: #262e3c;
+    border: 1px solid #d69e4e;
+    color: #ffe3a7;
+    font-size: 1.1rem;
+    padding: 12px 8px;
+    border-radius: 60px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 9px 0 #11161f;
+    transition: 0.06s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.action-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 3px 0 #11161f;
+}
+
+.save-btn {
+    background: #1e5744;
+    border-color: #6fda6f;
+}
+
+.reset-btn {
+    background: #4a2f2f;
+    border-color: #da6f6f;
+}
+
+/* ВСПЛЫВАЮЩИЕ ЧИСЛА */
+.floating-number {
+    position: fixed;
+    font-weight: 900;
+    font-size: 2.6rem;
+    background: linear-gradient(45deg, #fff9b0, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px red, 0 5px 0 #9a4700;
+    pointer-events: none;
+    z-index: 9999;
+    animation: popFly 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+    white-space: nowrap;
+}
+
+@keyframes popFly {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+    70% { opacity: 0.9; transform: translate(-50%, -120px) scale(1.4); }
+    100% { opacity: 0; transform: translate(-50%, -180px) scale(2); }
+}
+
+/* ПОДВАЛ */
+.footnote {
+    text-align: center;
+    color: #6f8aac;
+    margin-top: 16px;
+    font-size: 0.75rem;
+}
+
+/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ */
+@media (max-width: 500px) {
+    .game-wrapper {
+        padding: 20px 16px;
+        border-radius: 40px;
+    }
+    
+    .glitch-title {
+        font-size: 2.2rem;
+    }
+    
+    .mega-clicker {
+        width: 180px;
+        height: 180px;
+        font-size: 2rem;
+    }
+    
+    .score-number {
+        font-size: 3.5rem;
+    }
+    
+    .stat-block {
+        min-width: 70px;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .upgrade-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .upgrade-card {
+        padding: 12px 0;
+    }
+    
+    .button-row {
+        flex-direction: column;
+    }
+}
